@@ -121,7 +121,7 @@ def main():
         memory_usage = n_train_val_sg * sg_memory_usage
 
         # create lmdb file
-        env = lmdb.open(os.path.join(args.save_dir, 'tvqa_trainval_sg.lmdb'), map_size=memory_usage)
+        env = lmdb.open(os.path.join(args.save_dir, 'tvqa_trainval_sg.lmdb'), map_size=2*memory_usage)
         with env.begin(write=True) as txn:
             for _image_id in tqdm(_image_ids,
                                   unit='image',
@@ -162,7 +162,7 @@ def main():
         memory_usage = n_test_sg * sg_memory_usage
 
         # create lmdb file
-        env = lmdb.open(os.path.join(args.save_dir, 'tvqa_test_sg.lmdb'), map_size=memory_usage)
+        env = lmdb.open(os.path.join(args.save_dir, 'tvqa_test_sg.lmdb'), map_size=2*memory_usage)
         with env.begin(write=True) as txn:
             for _image_id in tqdm(_image_ids,
                                   unit='image',
