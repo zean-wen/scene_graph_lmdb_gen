@@ -79,7 +79,7 @@ class SceneGraphEmbedding:
                 rel_embedding[rel_index] = (rel_name_emb + subject_emb) / 2
             rel_embedding = np.mean(rel_embedding, axis=0)
 
-            image_sg_embedding[obj_idx] = np.concatenate((name_embedding, attr_embedding, rel_embedding))
+            image_sg_embedding[obj_idx] = np.concatenate((name_embedding, attr_embedding, rel_embedding), axis=None)
 
         return image_sg_embedding
 
