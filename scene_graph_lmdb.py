@@ -123,6 +123,7 @@ def main():
         # create lmdb file
         env = lmdb.open(os.path.join(args.save_dir, 'tvqa_trainval_sg.lmdb'), map_size=2*memory_usage)
         with env.begin(write=True) as txn:
+            txn.put(key="keys".encode(), value=pickle.dumps(_image_ids))
             for _image_id in tqdm(_image_ids,
                                   unit='image',
                                   desc='train_val scene graph lmdb generation'):
@@ -166,6 +167,7 @@ def main():
         # create lmdb file
         env = lmdb.open(os.path.join(args.save_dir, 'tvqa_test_sg.lmdb'), map_size=2*memory_usage)
         with env.begin(write=True) as txn:
+            txn.put(key="keys".encode(), value=pickle.dumps(_image_ids))
             for _image_id in tqdm(_image_ids,
                                   unit='image',
                                   desc='test scene graph lmdb generation'):
