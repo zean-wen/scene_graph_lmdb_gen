@@ -133,6 +133,8 @@ def main():
                     image_sg = val_sg[image_id]['objects']
                 image_sg_embeddings = scene_graph_emb(image_sg)
                 txn.put(key=_image_id, value=pickle.dumps(image_sg_embeddings))
+        del train_sg
+        del val_sg
 
     if 'test' in tiers:
         # test sg lmdb generation
